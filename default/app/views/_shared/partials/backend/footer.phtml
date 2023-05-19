@@ -1,0 +1,6 @@
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <p>Versión: <?php echo APP_VERSION; ?> - Ip: <?php echo Session::has('ip') ? Session::get('ip') : DwUtils::getIp(); ?> - Tiempo: <?php echo number_format(round((microtime(1)-START_TIME),4),4),' seg.'?></p>
+    </div>
+    <strong><p>&copy; Copyright <?php echo date("Y"); ?> - <?php echo DwHtml::outLink('#', 'Ing. Diego Gonzalez', array('target'=>'_blank')); ?>. Todos los derechos reservados. <?php echo DwHtml::outLink('#', 'Contacto', array('target'=>'_blank')); ?></p></strong>
+  </footer>

@@ -1,0 +1,51 @@
+<?php View::notify(); ?>
+
+
+<div class="account-container">
+
+        <?php echo DwForm::open('sistema/login/entrar/', '', array('class'=>'no-ajax dw-validate', 'id'=>'formulario', 'before-send'=>'onSend();')); ?>
+
+            <?php echo DwForm::focus('login'); ?>
+
+            <noscript><h5 style="text-align: center;">¡Tu navegador no soporta Javascript!.. Activa el uso de Javascript en tu navegador.</h5></noscript>
+            
+
+            <div style="" class="dw-validate-tips"></div>
+
+            <div class="login-fields">
+
+                <div class="form-group has-feedback">
+                    <input type="text" id="login" name="login" class="form-control" placeholder="Usuario">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+
+                <div>
+                    <?php echo DwForm::hidden('mode', null, 'auth'); ?>
+                </div>
+
+                <div>
+                    <?php echo DwForm::token(); ?>
+                </div>
+
+            </div>
+
+            <div class="login-actions">
+                <div class="pull-right" style="padding-right: 14px;">
+                    <?php echo DwForm::submit2('Entrar', array('class'=>'btn btn-primary btn-warning btn-large'), 'signin'); ?>
+                </div>
+            </div>
+
+        <?php echo DwForm::close(); ?>
+
+</div>
+
+<div class="login-extra">
+    Recuperar <?php echo DwHtml::link('#', 'contraseña', array('data-target'=>'#resetPassword', 'data-toggle'=>'modal')); ?>
+</div>
+
+<?php echo DwDialog::alert('Para recuperar tu contraseña puedes contactar al administrador del sistema o contactarnos a través de los siguientes medios: ', 'subtext: E-mail: diegojgonz@gmail.com<br />Teléfono: (+58) 414 847 64 92', 'title: Recuperación de contraseña', 'name: resetPassword', 'icon: icon-question-sign'); ?>

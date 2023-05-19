@@ -1,0 +1,61 @@
+<?php Tag::css('scaffold')?>
+<div id="scaffold">
+<?php View::content()?>
+<h1><?php echo ucwords("$model"),": <span>$action_name</span>" ?></h1>
+<?php if ($results->items) : ?>
+<table id="listado">
+    <thead><tr>
+        <th>ID</th>
+        <th>Soporte Registro</th>
+        <th>Codigo</th>
+        <th>Rotulacion</th>
+        <th>Grupo</th>
+        <th>Subgrupo</th>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Orden Compra</th>
+        <th>Fecha Compra</th>
+        <th>Unidad Organizacional</th>
+        <th>Responsable</th>
+        <th>Acciones</th>
+    </tr></thead>
+	<tbody>
+    <?php foreach ($lista as $item) : ?>
+        <tr>
+            <td><?php echo $item->id ?></td>
+            <td><?php echo $item->soporte_registro ?></td>
+            <td><?php echo $item->codigo ?></td>
+            <td><?php echo $item->getRotulacion()->nombre ?></td>
+            <td><?php echo $item->grupo_id ?></td>
+            <td><?php echo $item->subgrupo_id?></td>
+            <td><?php echo $item->nombre ?></td>
+            <td><?php echo $item->cantidad ?></td>
+            <td><?php echo $item->orden_compra ?></td>
+            <td><?php echo $item->fecha_compra ?></td>
+            <td><?php echo $item->getUnidadOrganizacional()->nombre ?></td>
+            <td><?php if ($item->responsable_id<>""){?>
+            <?php echo $item->getResponsable()->nombre ?>
+            <?php } ?></td>
+			<td><?php echo Html::linkAction("ver/$item->id",'Ver')?> |
+			<?php echo Html::linkAction("editar/$item->id",'Editar')?> |
+			<?php echo Html::linkAction("borrar/$item->id",'Borrar', 'onclick="return confirm(\'¿Está seguro?\')"')?>
+			</td>
+        </tr>
+    <?php endforeach?>
+	</tbody>
+</table>
+<?php else : // Si no hay items?>
+<h2>No hay ningún registro</h2>
+<?php endif ?>
+
+</div>
+<div class="actions">
+	<?php echo Html::linkAction("crear/",'Crear registro')?>
+</div>
+<?php //var_dump($results)?>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#listado').DataTable();
+        });
+    </script>

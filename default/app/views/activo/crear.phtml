@@ -1,0 +1,135 @@
+<?php //Tag::css('scaffold') ?>
+<div id="scaffold">
+<?php View::content();?>
+<?php View::process($model, $action_name, $action_name); ?>
+
+<div class="box box-primary">
+    <div class="box-body">
+    	<div class="dw-overflow">
+
+                <?php echo Form::hidden("activo.id") ?>
+                <div class="col-sm-6">
+                    <?php echo Form::label("Soporte Registro","activo_soporte_registro") ?>
+                    <?php echo Form::text("activo.soporte_registro","class='form-control'")?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Codigo","activo_codigo") ?>
+                    <?php echo Form::text("activo.codigo","class='form-control'")?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Descripcion","activo_nombre") ?>
+                    <?php echo Form::text("activo.nombre","class='form-control'")?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Rotulacion","activo_rotulacion_id") ?>
+                    <?php echo Form::dbSelect("activo.rotulacion_id","nombre",null,"Seleccione","class='form-control'")?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Grupo","activo_grupo_id") ?>
+                    <?php echo Form::dbSelect("activo.grupo_id","nombre",null,"Seleccione","class='form-control'")?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("SubGrupo","activo_subgrupo_id") ?>
+                    <div id="subgrupo">
+                    <?php echo Form::select("activo.subgrupo_id",array("0"=>"Seleccione"),"class='form-control'")?>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Cantidad","activo_cantidad") ?>
+                    <?php echo Form::text("activo.cantidad","class='form-control'")?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Orden de Compra","activo_orden_compra") ?>
+                    <?php echo Form::text("activo.orden_compra","class='form-control'")?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Fecha de Compra","activo_fecha_compra") ?>
+                    <?php echo Form::date("activo.fecha_compra","form-control",null,date("Y-m-d"))?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Marca","activo_marca") ?>
+                    <?php echo Form::text("activo.marca","class='form-control'")?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Modelo","activo_modelo") ?>
+                    <?php echo Form::text("activo.modelo","class='form-control'")?>
+                </div>
+                
+                <div class="col-sm-6">
+                    <?php echo Form::label("Color","activo_color") ?>
+                    <?php echo Form::text("activo.color","class='form-control'")?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Unidad Organizacional","activo_unidad_organizacional_id") ?>
+                    <?php echo Form::dbSelect("activo.unidad_organizacional_id","nombre",null,"Seleccione","class='form-control'")?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Responsable","activo_responsable_id") ?>
+                    <?php echo Form::dbSelect("activo.responsable_id","nombre",null,"Seleccione","class='form-control'")?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Seriales","activo_seriales") ?>
+                    <?php echo Form::text("activo.seriales","class='form-control'")?>
+                </div>
+                
+                <div class="col-sm-6">
+                    <?php echo Form::label("Estado","activo_condicion_id") ?>
+                    <?php echo Form::dbSelect("activo.condicion_id","nombre",null,"Seleccione","class='form-control'")?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Fuente de Financiamiento","activo_fuente_financiamiento_id") ?>
+                    <?php echo Form::dbSelect("activo.fuente_financiamiento_id","nombre",null,"Seleccione","class='form-control'")?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Costo","activo_costo") ?>
+                    <?php echo Form::text("activo.costo","class='form-control'")?>
+                </div>
+
+                <div class="col-sm-6">
+                    <?php echo Form::label("Observacion","activo_observacion") ?>
+                    <?php echo Form::text("activo.observacion","class='form-control'")?>
+                </div>
+                
+                <div class="col-sm-12" style="padding-top: 20px;">  
+                    <?php echo Form::submit("Enviar","class='btn btn-primary'"); ?>
+                </div>
+            <?PHP echo Form::close();?>
+		</div>
+	</div>
+</div>
+<div class="actions">
+	<a class="btn btn-default" href="../">Listado</a>
+</div>
+
+<?php //View::partial('editors/tinymce') // ya veremos si incluimos algun wysiwyg?>
+</div>
+
+<script type='text/javascript'>
+
+  $(document).on('change', "#activo_grupo_id", function () {
+    var grupo_id = $('#activo_grupo_id').val();
+      $.ajax({
+        type: "POST",
+        url: "<?php echo PUBLIC_PATH . 'subgrupo/getSubgrupo/'; ?>",
+        data: "grupo_id=" + grupo_id,
+          success: function (html) {
+            $("#subgrupo").html(html);
+          }
+       });
+ });
+</script>

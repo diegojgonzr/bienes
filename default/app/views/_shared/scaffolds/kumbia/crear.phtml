@@ -1,0 +1,18 @@
+<?php //Tag::css('scaffold') ?>
+<div id="scaffold">
+<?php View::content();?>
+<?php View::process($model, $action_name, $action_name); ?>
+
+<div class="box box-primary">
+    <div class="box-body">
+    	<div class="dw-overflow">
+			<?php ModelForm::create($$model)?>
+		</div>
+	</div>
+</div>
+<div class="actions">
+	<a class="btn btn-default" href="../">Listado</a>
+</div>
+
+<?php //View::partial('editors/tinymce') // ya veremos si incluimos algun wysiwyg?>
+</div>
